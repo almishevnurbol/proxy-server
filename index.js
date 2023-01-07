@@ -5,8 +5,10 @@ const path = require('path')
 const app = express()
 fs = require('fs')
 const fileUpload = require('express-fileupload')
+const cors = require('cors')
 
 app.use(express.json())
+app.use(cors())
 app.use(fileUpload())
 
 const port = 5000
