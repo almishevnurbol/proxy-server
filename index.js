@@ -14,12 +14,13 @@ const port = 5000
 app.get('/', async (req, res) => {
     try {
         const form = new FormData()
-        const fileName = req.query.fileName
-        if (!fileName) {
+        const fileName = await axios.get(`https://marketplacedeposit.com/api/images/${req.query.fileName}`, { responseType: 'stream' })
+
+        if (!fileName.data) {
             return res.status(400).send('No files were uploaded.')
         }
 
-        form.append('image', fs.createReadStream(path.join(__dirname, `static/${req.query.fileName}`)))
+        form.append('image', fileName.data)
         const response = await axios.post('https://api-dbh1-alitools.com/v4/search/image', form)
         // fs.unlink(__dirname + '/static/' + file.name)
         res.json(response.data)
