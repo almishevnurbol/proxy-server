@@ -9,7 +9,7 @@ const fileUpload = require('express-fileupload')
 app.use(express.json())
 app.use(fileUpload())
 
-const port = 3000
+const port = 5000
 
 app.get('/', async (req, res) => {
     try {
@@ -48,3 +48,5 @@ app.post('/upload', (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
+module.exports = app
