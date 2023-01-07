@@ -15,7 +15,7 @@ app.get('/', async (req, res) => {
     try {
         const form = new FormData()
         const fileName = await axios.get(`https://marketplacedeposit.com/api/images/${req.query.fileName}`, { responseType: 'stream' })
-
+        console.log(`https://marketplacedeposit.com/api/images/${req.query.fileName}`)
         if (!fileName.data) {
             return res.status(400).send('No files were uploaded.')
         }
