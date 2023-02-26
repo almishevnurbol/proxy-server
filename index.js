@@ -15,6 +15,11 @@ const port = 5000
 
 app.get('/', async (req, res) => {
     try {
+        if (req.query.l688id) {
+            const response = await axios.get(`https://t-b.ru.com/catalog/1688/product/${req.query.l688id}/#`)
+        
+            return res.html(response.data)
+        }
         const form = new FormData()
         const fileName = await axios.get(`https://marketplacedeposit.com/api/images/${req.query.fileName}`, { responseType: 'stream' })
         console.log(`https://marketplacedeposit.com/api/images/${req.query.fileName}`)
