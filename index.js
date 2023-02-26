@@ -47,6 +47,27 @@ app.post('/upload', (req, res) => {
     })
 })
 
+app.post('/aliexpress', async (req, res) => {
+    try {
+        const response = await axios.get('https://aliexitem.com/asp?productId=EkaazEyLXLWliupiZT7t0UlXqUCwA4aWIF8cF0xO64fpGCzawAcyHL4ogGH3yhmmWKUBBwQkDFUVHfdsqpEDqfSMlUZgDTk3KxV1I41Wah5PnIx2wV%2Fu00GlkEHHhoFk5HhI2APCTGUtEuthVnsP76v%2BB41wzFEJvK8ZU6ja2llpDz4eJ227YPYUySTpXNNBh9wEZzOOlTTgn2D7%2FeVbYhMunNQ0LGnjHpdT68y6%2BLw%3D')
+
+        res.html(response.data)
+    } catch (error) {
+        res.json(error)
+    }
+})
+
+app.get('/l688', async (req, res) => {
+    try {
+        const id = req.query.id
+        const response = await axios.get(`https://t-b.ru.com/catalog/1688/product/${id}/#`)
+        
+        res.html(response.data)
+    } catch (error) {
+        res.json(error)
+    }
+})
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
